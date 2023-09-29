@@ -171,7 +171,7 @@ def flip_dealer_card():
 def final_score():
 	global player, player_score, comp, comp_score
 	if comp_score == 0: comp_score = score(comp)
-	if len(player) >=5:		# Hit after 5th card creates 6th list position before redirecting to final_score()
+	if len(player) >=5 and player_score <= 21:		# Hit after 5th card creates 6th list position before redirecting to final_score()
 		messagebox.showinfo("Win", "You were dealt 5 cards without going over 21.\nYou win!")
 	elif player_score <= 21 and (player_score > comp_score or comp_score > 21):
 		messagebox.showinfo("Win", f"Your score: {player_score}\nDealer score: {comp_score}\nYou win!")
