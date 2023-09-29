@@ -1,3 +1,4 @@
 # blackjack
 It's a beginning. 
-I'd say it's a little messy right now, but it'll get cleaned and used as another opportunity to practice GUI development in tkinter.
+The original <b>blackjack.py</b> file was written for a terminal-based card game.
+However, this was a great opportunity to build another version with graphics using tkinter (and ImageTk), resulting in <b>blackjack_gui.py (and the companion images.zip).</b>
