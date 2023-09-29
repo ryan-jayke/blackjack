@@ -214,7 +214,6 @@ def new_game():
 		for card in range(0,player_card_count):
 			if card==2:
 				global player_label_3
-				# player_label_3 = tk.Label(player_frame, image='', text='', bg=back_color)
 				player_label_3.destroy()
 			elif card==3:
 				global player_label_4
