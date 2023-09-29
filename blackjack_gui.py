@@ -89,7 +89,11 @@ def hit(user=player,num=1):
 					player_image_5 = resize_cards(f"images/{card}.jpg")
 					player_label_5 = tk.Label(player_frame, image=player_image_5, bg=back_color)
 					player_label_5.grid(row=1, column=4, padx=10)
-				else:
+
+				# calculate player score; comp score/behavior will be managed in stand()
+				# if player doesn't bust, continue; then if player holds 5 cards, finish game
+				player_score = score(player)
+				if player_card_count == 5: 
 					messagebox.showinfo("Max Cards", "Maximum cards dealt this hand")
 					flip_dealer_card()
 					final_score()
@@ -117,8 +121,6 @@ def hit(user=player,num=1):
 					dealer_label_5.grid(row=1, column=4, padx=10)
 				else:
 					messagebox.showinfo("Max Cards", "Maximum cards dealt to dealer this hand")
-		# calculate player score; comp score/behavior will be managed in stand()
-		player_score = score(player)
 	# if no cards remain
 	elif not cards and shuffled:
 		messagebox.showinfo("No Cards", "No cards left")
@@ -171,7 +173,6 @@ def score(hand):
 			point.append(int(s[0]))
 	total = sum(point)
 	if hand == player: player_frame.configure(text = f"Player: {total} points")
-
 	if total > 21 and 11 in point:
 		for p in range(len(point)):
 			if point[p] == 11: point[p] = 1
@@ -193,7 +194,7 @@ def final_score():
 	"""recalculate scores for final message: win, lose, tie"""
 	comp_score = score(comp)
 	player_score = score(player)
-	if len(player) >=5 and player_score <= 21:		# Hit after 5th card creates 6th list position before redirecting to final_score()
+	if len(player) >=5 and player_score <= 21:
 		messagebox.showinfo("Win", "You were dealt 5 cards without going over 21.\nYou win!")
 	elif player_score <= 21 and (player_score > comp_score or comp_score > 21):
 		messagebox.showinfo("Win", f"Your score: {player_score}\nDealer score: {comp_score}\nYou win!")
